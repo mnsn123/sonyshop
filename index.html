@@ -11,13 +11,13 @@ id: index
     <div class="item">
         <div class="card my-4 card-cascade wider">
           <a href="{{ site.url }}{{ product.url }}">
-          <div class="view view-cascade overlay">
+          <div class="view view-cascade overlay owl-card-limit">
           <img src="{{ product.featured_image_path }}" alt="{{ product.title }}" class="card-img-top">
 
                       <div class="mask rgba-white-slight waves-effect waves-light"></div>
 
                   </div>
-          <div class="card-body card-body-cascade purple-gradient">
+          <div class="card-body card-body-cascade purple-gradient owl-body-limit">
               <p class="text-center"><span class='text-white'><strong>{% if site.currency_code and site.currency_code != '' %}{{ site.currency_code }}{% endif %} {{ product.price }} per {{ product.quantity }} {{ product.unit }}</strong></span><br />
               <span class="card-title text-white">{{ product.title | upcase }}</span></p>
               <div class="text-center">
