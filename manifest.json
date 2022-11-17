@@ -20,5 +20,6 @@ layout: none
   "background_color": "#fdfdfd",
   "start_url": "{{ site.url }}\/?external=false",
   "display": "standalone",
+  "gcm_sender_id": "103953800507",
   "orientation": "any"
 }
