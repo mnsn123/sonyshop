@@ -18,7 +18,7 @@ messaging.requestPermission()
     })
     .then(function(token) {
         // send rest call to add to database
-        $.ajax('https://example.firebaseio.com/pushtokens/'+token+'.json', {
+        $.ajax('https://news-pushalert.firebaseio.com/pushtokens/'+token+'.json', {
             method: 'PUT',
             data: 'true',
             error: function(err) {
