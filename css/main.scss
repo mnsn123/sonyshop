@@ -261,3 +261,15 @@ input.number {
 .owl-carousel .owl-stage { display: flex; }
 /*(2) the direct div of each element in the owl carousel*/
 .article-items { height: 100%; }
+
+
+.owl-card-limit {
+	  min-height: 280px;
+  max-height: 280px;
+}
+
+.owl-body-limit {
+	  min-height: 180px;
+  max-height: 180px;
+}
+	
