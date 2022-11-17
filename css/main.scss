@@ -264,8 +264,8 @@ input.number {
 
 
 .owl-card-limit {
-	  min-height: 280px;
-  max-height: 280px;
+	  min-height: 280px !important;
+  max-height: 280px !important;
 }
 
 .owl-body-limit {
