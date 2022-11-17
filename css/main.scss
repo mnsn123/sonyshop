@@ -255,3 +255,9 @@ input.number {
     transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,-webkit-box-shadow 0.15s ease-in-out;
     border-radius: 50rem !important;
 }
+
+
+/*(1) owl-stage box*/
+.owl-carousel .owl-stage { display: flex; }
+/*(2) the direct div of each element in the owl carousel*/
+.article-items { height: 100%; }
