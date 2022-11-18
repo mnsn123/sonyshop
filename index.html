@@ -10,13 +10,14 @@ id: index
   <div class="owl-carousel owl-theme" id="owl-demo">
   
         {% for product in site.posts %}
+    <a href="{{ site.url }}{{ product.url }}">
     <div>
      <div class="owl-text-overlay ">
        <h2 class="owl-title"><span>{% if site.currency_code and site.currency_code != '' %}{{ site.currency_code }}{% endif %} {{ product.price }} per {{ product.quantity }} {{ product.unit }}</span><br /><span>{{ product.title | upcase }}</span></h2>
        </div>
      <img class="owl-img" src="{{ product.featured_image_path }}" alt="{{ product.title }}" style="min-height:280px; max-height: 280px;">
       </div>
-    
+    </a>
   {% endfor %}
   </div>
 
