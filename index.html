@@ -4,31 +4,7 @@ layout: default
 id: index
 ---
 
-{% comment %}
-    <div class="item">
-        <div class="card my-4 card-cascade wider">
-          <a href="{{ site.url }}{{ product.url }}">
-          <div class="view view-cascade overlay ">
-          <img src="{{ product.featured_image_path }}" height="300" alt="{{ product.title }}" style="min-height:280px; max-height: 280px;" class="card-img-top owl-card-limit">
 
-                      <div class="mask rgba-white-slight waves-effect waves-light"></div>
-
-                  </div>
-          <div class="card-body card-body-cascade purple-gradient owl-body-limit">
-              <p class="text-center"><span class='text-white'><strong>{% if site.currency_code and site.currency_code != '' %}{{ site.currency_code }}{% endif %} {{ product.price }} per {{ product.quantity }} {{ product.unit }}</strong></span><br />
-              <span class="card-title text-white">{{ product.title | upcase }}</span></p>
-              <div class="text-center">
-                <a href="https://www.facebook.com/sharer.php?u={{ site.url }}{{ product.url }}" target="_blank" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false"><button type="button" class="btn btn-sm px-3 btn-facebook"><i class="fab fa-facebook-f fa-lg"></i> Share</button></a>
-                <a href="whatsapp://send?text={{ site.url}}{{ product.url }}" data-action="share/whatsapp/share"><button type="button" class="btn btn-sm px-3 text-white btn-whatsapp"><i class="fab fa-whatsapp fa-lg"></i> Share</button></a>
-                <!-- <button class="btn btn-sm btn-secondary px-3 d-lg-none text-default" type="submit" value="submit"><i class="fa fa-share-alt fa-lg share-btn5"></i></button> -->
-              </div>
-
-            </div>
-              </a>
-          </div>
-
-    </div>
-    {% endcomment %}
 
 <div class="car-content">
   <div class="owl-carousel owl-theme" id="owl-demo">
