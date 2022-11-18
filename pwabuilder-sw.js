@@ -3,24 +3,7 @@
 const staticCacheName = '{{ "now" | date: "%Y-%m-%d-%H-%M" }}';
 const dynamicCacheName = '{{ "now" | date: "%Y-%m-%d-%H-%M" }}';
 const assets = [
-  '{{ site.url }}/',
-  '{{ site.url }}/index.html',
-  '{{ site.url }}/css/main.css',
-  'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-  'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css',
-  'https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js',
-  '{{ site.url }}/js/jquery.shop.js',
-  '{{ site.favicon }}',
-  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js',
-  '{{ site.url }}/js/style-picker.js',
-  '{{ site.url }}/js/s.min.js',
-  '{{ site.url }}/js/pwa-app.js',
-  '{{ site.url }}/js/infinite.js',
-  '{{ site.url }}/pages/fallback/index.html'
+'{{ site.url }}/pages/fallback/index.html'
 ];
 
 // cache size limit function
