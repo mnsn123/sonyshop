@@ -8,7 +8,7 @@ layout: none
   } else {
     // Register the service worker
     navigator.serviceWorker
-      .register("pwabuilder-sw.js", {
+      .register("./pwabuilder-sw.js", {
         scope: "{{ site.url }}/"
       })
       .then(function (reg) {
