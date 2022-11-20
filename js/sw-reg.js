@@ -8,7 +8,7 @@ layout: none
   } else {
     // Register the service worker
     navigator.serviceWorker
-      .register("https://monsoonmalabar.com/pwabuilder-sw.js", {
+      .register("{{ site.url }}/pwabuilder-sw.js", {
         scope: "{{ site.url | replace_first: 'https://monsoonmalabar.com/', '' }}"
       })
       .then(function (reg) {
