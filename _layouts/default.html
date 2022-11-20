@@ -97,6 +97,7 @@ layout: none
       gtag('config', '{{ site.analytics }}');
     </script>
     {% endif %}
+	  {% comment %}
     {% if page.id == 'index' %}
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
@@ -104,6 +105,7 @@ layout: none
       document.body.appendChild(el);
    </script>
    {% endif %}
+	  {% endcomment %}
   </head>
   <body class="bg-light">
     <div class="site-container">
