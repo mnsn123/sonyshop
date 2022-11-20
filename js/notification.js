@@ -1,5 +1,7 @@
 // Initialize Firebase - https://firebase.google.com/docs/web/setup
-  var config = {
+ 
+/*
+var config = {
     apiKey: "AIzaSyC2ZB7VvoUiRdUvnOSPfzP6DPqxejMiw4c",
   authDomain: "news-pushalert.firebaseapp.com",
   databaseURL: "https://news-pushalert.firebaseio.com",
@@ -16,7 +18,7 @@ messaging.requestPermission()
         return messaging.getToken();
     })
     .then(function(token) {
-        // send rest call to add to database
+       
         $.ajax('https://news-pushalert.firebaseio.com/pushtokens/'+token+'.json', {
             method: 'PUT',
             data: 'true',
@@ -28,7 +30,7 @@ messaging.requestPermission()
         console.log('Permission denied' + err);
     });
 
-
+*/
 
 
 
