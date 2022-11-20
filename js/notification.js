@@ -5,8 +5,7 @@
   databaseURL: "https://news-pushalert.firebaseio.com",
   projectId: "news-pushalert",
   storageBucket: "news-pushalert.appspot.com",
-  messagingSenderId: "348845039541",
-  appId: "1:348845039541:web:0005a6bc8c69c0fc4e03fc"
+  messagingSenderId: "348845039541"
   };
   firebase.initializeApp(config);
 
