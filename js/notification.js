@@ -25,7 +25,7 @@ messaging.requestPermission()
         });
     })
     .catch(function(err) {
-        console.log('Permission denied');
+        console.log('Permission denied' + err);
     });
 
 
