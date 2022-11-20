@@ -8,8 +8,8 @@ layout: none
   } else {
     // Register the service worker
     navigator.serviceWorker
-      .register("{{ site.url }}/pwabuilder-sw.js", {
-        scope: "{{ site.url }}/"
+      .register("/pwabuilder-sw.js", {
+        scope: "{{ site.url }} | replace: 'https://monsoonmalabar.com/', ''"
       })
       .then(function (reg) {
         console.log("Service worker has been registered for scope: " + reg.scope);
