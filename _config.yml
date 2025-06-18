@@ -2,15 +2,19 @@ title: "Sony Shop"
 url: "https://monsoonmalabar.com/sonyshop"
 email: "justinechacko1@gmail.com"
 markdown: kramdown
-mobile: "919961555760"
+theme-color: "#b00000"
 country: "United States of America (the)"
 currency_code: "USD"
-paypal_email: 
-razorpay_key: 
+paypal_email: ""
+razorpay_key: ""
 location: "11.871601,75.3519669"
-theme-color: "#b00000"
 page_language: "en"
 category: "Kirana Store, FMCG & Grocery"
+favicon: "https://i.imgur.com/cE2Kls8.png"
+paypal: ""
+fb_appid: "494525305893363"
+analytics: ""
+adsense: ""
 sass:
   sass_dir: _sass
   style: compressed
@@ -32,10 +36,4 @@ plugins_dir:
 encoding: UTF-8
 permalink: /products/:title/
 paginate: 10
-permalink: /:categories/:title/
 paginate_path: 'page/:num/'
-favicon: "https://i.imgur.com/cE2Kls8.png"
-paypal: 
-fb_appid: "494525305893363"
-analytics: 
-adsense: 
