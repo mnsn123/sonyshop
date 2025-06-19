@@ -21,6 +21,7 @@ sass:
 collections:
   products:
     output: true
+    permalink: /blog/:name/
 defaults:
   - scope:
       type: posts
