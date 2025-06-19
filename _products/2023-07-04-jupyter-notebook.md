@@ -8,7 +8,7 @@ categories: sample-posts
 giscus_comments: true
 related_posts: false
 ---
-
+{% raw %}
 To include a jupyter notebook in a post, you can use the following code:
 
 {% raw %}
@@ -43,3 +43,4 @@ The plugin takes as input the path to the notebook, but it assumes the file exis
 {:/nomarkdown}
 
 Note that the jupyter notebook supports both light and dark themes.
+{% endraw %}
