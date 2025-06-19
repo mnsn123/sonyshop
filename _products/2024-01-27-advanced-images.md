@@ -10,7 +10,7 @@ images:
   compare: true
   slider: true
 ---
-
+{% raw %}
 This is an example post with advanced image components.
 
 ## Image Slider
@@ -33,3 +33,4 @@ This is a simple image comparison slider. It uses the [img-comparison-slider](ht
   {% include figure.liquid path="assets/img/prof_pic.jpg" class="img-fluid rounded z-depth-1" slot="first" %}
   {% include figure.liquid path="assets/img/prof_pic_color.png" class="img-fluid rounded z-depth-1" slot="second" %}
 </img-comparison-slider>
+{% endraw %}
