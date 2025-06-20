@@ -773,33 +773,55 @@
 		
 		// Adds items to the shopping cart
 		
+		
 		handleAddToCartForm: function() {
-			var self = this;
-			self.$formAddToCart.each(function() {
-				var $form = $( this );
-				var $product = $form.parent();
-				var price = self._convertString( $product.data( "price" ) );
-				var name =  $product.data( "name" ) + ' ' + $product.data( "quantity" ) + ' ' + $product.data( "unit" );
-				
-				$form.on( "submit", function() {
-					var qty = self._convertString( $form.find( ".qty" ).val() );
-					var subTotal = qty * price;
-					var total = self._convertString( self.storage.getItem( self.total ) );
-					var sTotal = total + subTotal;
-					self.storage.setItem( self.total, sTotal );
-					self._addToCart({
-						product: name,
-						price: price,
-						qty: qty
-					});
-					var shipping = self._convertString( self.storage.getItem( self.shippingRates ) );
-					var shippingRates = self._calculateShipping( qty );
-					var totalShipping = shipping + shippingRates;
-					
-					self.storage.setItem( self.shippingRates, totalShipping );
-				});
-			});
-		},
+  var self = this;
+
+  self.$formAddToCart.each(function() {
+    var $form = $(this);
+    var $product = $form.parent();
+    var price = self._convertString($product.data("price"));
+    var name = $product.data("name") + ' ' + $product.data("quantity") + ' ' + $product.data("unit");
+
+    $form.on("submit", function(e) {
+      e.preventDefault();
+
+      var qty = self._convertString($form.find(".qty").val());
+      if (qty < 1) qty = 1;
+
+      // ✅ Add or update product
+      self._addToCart({
+        product: name,
+        price: price,
+        qty: qty
+      });
+
+      // ✅ Recalculate total after add/update
+      var cart = self._toJSONObject(self.storage.getItem(self.cartName));
+      var items = cart.items;
+      var sTotal = 0;
+
+      for (var i = 0; i < items.length; i++) {
+        sTotal += parseFloat(items[i].price) * parseInt(items[i].qty, 10);
+      }
+
+      self.storage.setItem(self.total, sTotal.toFixed(2));
+
+      // 🚚 Update shipping (optional)
+      var shipping = self._convertString(self.storage.getItem(self.shippingRates));
+      var shippingRates = self._calculateShipping(qty);
+      var totalShipping = shipping + shippingRates;
+
+      self.storage.setItem(self.shippingRates, totalShipping.toFixed(2));
+
+      // ✅ Optional: Refresh cart view if on cart page
+      if (typeof self.displayCart === "function") {
+        self.displayCart();
+      }
+    });
+  });
+},
+
 		
 		// Handles the checkout form by adding a validation routine and saving user's info into the session storage
 		
@@ -925,16 +947,26 @@
 		 */
 		
 		
-		_addToCart: function( values ) {
-			var cart = this.storage.getItem( this.cartName );
-			
-			var cartObject = this._toJSONObject( cart );
-			var cartCopy = cartObject;
-			var items = cartCopy.items;
-			items.push( values );
-			
-			this.storage.setItem( this.cartName, this._toJSONString( cartCopy ) );
-		},
+		_addToCart: function(values) {
+  var cart = this._toJSONObject(this.storage.getItem(this.cartName));
+  var items = cart.items;
+  var found = false;
+
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].product === values.product) {
+      items[i].qty = parseInt(items[i].qty, 10) + parseInt(values.qty, 10);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    items.push(values);
+  }
+
+  this.storage.setItem(this.cartName, this._toJSONString(cart));
+},
+
 		
 		/* Custom shipping rates calculation based on the total quantity of items in the cart
 		 * @param qty Number the total quantity of items
