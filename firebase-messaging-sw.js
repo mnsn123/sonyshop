@@ -2,64 +2,79 @@
 ---
 const staticCacheName = '{{ "now" | date: "%Y-%m-%d-%H-%M" }}';
 const dynamicCacheName = '{{ "now" | date: "%Y-%m-%d-%H-%M" }}';
+
 const assets = [
   '{{ site.url }}/pages/fallback/index.html'
 ];
 
-// cache size limit function
-const limitCacheSize = (name, size) => {
+// Limit dynamic cache size
+const limitCacheSize = (name, maxItems) => {
   caches.open(name).then(cache => {
     cache.keys().then(keys => {
-      if(keys.length > size){
-        cache.delete(keys[0]).then(limitCacheSize(name, size));
+      if (keys.length > maxItems) {
+        cache.delete(keys[0]).then(() => limitCacheSize(name, maxItems));
       }
     });
   });
 };
 
-// install event
+// Install event: Pre-cache fallback
 self.addEventListener('install', evt => {
-  //console.log('service worker installed');
   evt.waitUntil(
-    caches.open(staticCacheName).then((cache) => {
-      console.log('caching shell assets');
-      cache.addAll(assets);
+    caches.open(staticCacheName).then(cache => {
+      return cache.addAll(assets);
     })
   );
 });
 
-// activate event
+// Activate event: Clean up old caches
 self.addEventListener('activate', evt => {
-  //console.log('service worker activated');
+  const keepCaches = [staticCacheName, dynamicCacheName];
   evt.waitUntil(
     caches.keys().then(keys => {
-      //console.log(keys);
-      return Promise.all(keys
-        .filter(key => key !== staticCacheName && key !== dynamicCacheName)
-        .map(key => caches.delete(key))
+      return Promise.all(
+        keys.filter(k => !keepCaches.includes(k)).map(k => caches.delete(k))
       );
     })
   );
 });
 
-// fetch event
+// Fetch event: Cache only same-origin requests under /name1/
 self.addEventListener('fetch', evt => {
-  //console.log('fetch event', evt);
-  evt.respondWith(
-    caches.match(evt.request).then(cacheRes => {
-      return cacheRes || fetch(evt.request).then(fetchRes => {
-        return caches.open(dynamicCacheName).then(cache => {
-          cache.put(evt.request.url, fetchRes.clone());
-          // check cached items size
-          limitCacheSize(dynamicCacheName, 2500);
-          return fetchRes;
-        })
-      });
-    }).catch(() => {
-      return caches.match('{{ site.url }}/pages/fallback/index.html');
-    })
-  );
+  const req = evt.request;
+  const url = new URL(req.url);
+
+  // Only handle GET requests for {{ site.url }} (https://site.com/name1)
+  if (
+    req.method === 'GET' &&
+    url.origin === location.origin &&
+    url.href.startsWith('{{ site.url }}/')
+  ) {
+    evt.respondWith(
+      caches.match(req).then(cacheRes => {
+        return cacheRes || fetch(req).then(fetchRes => {
+          // Skip opaque or error responses
+          if (
+            fetchRes.status !== 200 ||
+            fetchRes.type === 'opaque'
+          ) {
+            return fetchRes;
+          }
+
+          // Cache it
+          return caches.open(dynamicCacheName).then(cache => {
+            cache.put(req, fetchRes.clone());
+            limitCacheSize(dynamicCacheName, 50);
+            return fetchRes;
+          });
+        });
+      }).catch(() => {
+        return caches.match('{{ site.url }}/pages/fallback/index.html');
+      })
+    );
+  }
 });
+
 
 
 
