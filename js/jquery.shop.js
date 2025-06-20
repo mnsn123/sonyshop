@@ -784,7 +784,7 @@
     var name = $product.data("name") + ' ' + $product.data("quantity") + ' ' + $product.data("unit");
 
     $form.on("submit", function(e) {
-      e.preventDefault();
+      
 
       var qty = self._convertString($form.find(".qty").val());
       if (qty < 1) qty = 1;
@@ -815,9 +815,7 @@
       self.storage.setItem(self.shippingRates, totalShipping.toFixed(2));
 
       // ✅ Optional: Refresh cart view if on cart page
-      if (typeof self.displayCart === "function") {
-        self.displayCart();
-      }
+      
     });
   });
 },
