@@ -773,7 +773,6 @@
 		
 		// Adds items to the shopping cart
 		
-		
 		handleAddToCartForm: function() {
   var self = this;
 
@@ -818,9 +817,7 @@
       
     });
   });
-},
-
-		
+},		
 		// Handles the checkout form by adding a validation routine and saving user's info into the session storage
 		
 		handleCheckoutOrderForm: function() {
@@ -963,9 +960,7 @@
   }
 
   this.storage.setItem(this.cartName, this._toJSONString(cart));
-},
-
-		
+},		
 		/* Custom shipping rates calculation based on the total quantity of items in the cart
 		 * @param qty Number the total quantity of items
 		 * @returns shipping Number the shipping rates

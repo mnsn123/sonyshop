@@ -56,19 +56,6 @@ function decreaseValue2(elem) {
 		    }
 }
 
-// Auto-update when user types and changes quantity manually
-$(document).on('change', 'input.number', function () {
-  var $input = $(this);
-  var newQty = parseInt($input.val(), 10);
-  if (isNaN(newQty) || newQty < 1) {
-    newQty = 1;
-    $input.val(1);
-  }
-
-  var product = $input.data("product");
-  updateCartItem(product, newQty);
-});
-
 function updateCartItem(productName, newQty) {
 	  var cartStr = sessionStorage.getItem("Monsoon-{{ site.url }}-cart");
 	  var cart = JSON.parse(cartStr);

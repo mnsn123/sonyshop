@@ -10,21 +10,21 @@ layout: none
   "lang": "en",
   "dir": "auto",
   "scope": "{{ site.url }}/",
-  "start_url": "{{ site.url }}/?source=pwa",
+  "start_url": "{{ site.url }}/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "theme_color": "{{ site.theme-color | default: '#ffffff' }}",
   "background_color": "#fdfdfd",
   "icons": [
     {
-      "src": "{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.url }}/logo.png{% endif %}",
+      "src": "{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.url }}\/logo.png{% endif %}",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image\/png"
     },
     {
       "src": "{% if site.favicon %}{{ site.favicon }}{% else %}{{ site.url }}/logo.png{% endif %}",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image\/png"
     }
   ],
   "launch_handler": {
