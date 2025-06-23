@@ -29,7 +29,7 @@ layout: default
                 <div class="styles">
                   {% for style in page.styles %}
                   <div id="product-{{ forloop.index }}" class="style" {% unless forloop.first %}style="display: none"{% endunless %}>
-                    <span class="zoom-2"><img width="100%" height="400px" src="{{ style.image_path }}" itemprop="image"></span>
+                    <span class="zoom-2"><img src="{{ style.image_path }}" itemprop="image" class="product-img"></span>
                   </div>
                   {% endfor %}
                 </div>
