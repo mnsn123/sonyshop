@@ -28,9 +28,7 @@ id: Other
 {% if subcategory %}
   {% assign filtered_products = filtered_products | where_exp:"item", "item.categories contains subcategory" %}
 {% endif %}
-      {%comment%}
-      {% for product in site.categories[page.category] %}
-      {%endcomment%}
+      
       {% for product in filtered_products %}
       
       <div class="card card-primary">
