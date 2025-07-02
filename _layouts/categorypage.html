@@ -21,7 +21,18 @@ id: Other
   </div>
   <main class="container my-4" id="site">
     <div class="card-columns" id="full-site">
+      {% assign main_category = page.category %}
+{% assign subcategory = page.subcategory %}
+
+{% assign filtered_products = site.posts | where_exp:"item", "item.categories contains main_category" %}
+{% if subcategory %}
+  {% assign filtered_products = filtered_products | where_exp:"item", "item.categories contains subcategory" %}
+{% endif %}
+      {%comment%}
       {% for product in site.categories[page.category] %}
+      {%endcomment%}
+      {% for product in filtered_products %}
+      
       <div class="card card-primary">
         <a href="{{ site.url }}{{ product.url }}">
           <div class="row no-gutters">
